@@ -227,10 +227,12 @@ def create_venue_submission():
       phone = form.phone.data
       genres = form.genres.data
       facebook_link = form.facebook_link.data
-      website = form.website.data
-      image_link = form.image_link.data
+      venue = Venue(name=name, city=city, state=state, address=address, phone=phone, genres=genres, facebook_link=facebook_link)
 
-      venue = Venue(name=name, city=city, state=state, address=address, phone=phone, genres=genres, facebook_link=facebook_link, website=website, image_link=image_link)
+      if not form.website.data == "":
+        venue.website = form.website.data
+      if not form.image_link.data == "":
+        venue.image_link = form.image_link.data
 
       db.session.add(venue)
       db.session.commit()
@@ -417,11 +419,13 @@ def create_artist_submission():
       state = form.state.data
       phone = form.phone.data
       genres = form.genres.data
-      website = form.website.data
       facebook_link = form.facebook_link.data
-      image_link = form.image_link.data
+      artist = Artist(name=name, city=city, state=state, phone=phone, genres=genres, facebook_link=facebook_link)
 
-      artist = Artist(name=name, city=city, state=state, phone=phone, genres=genres, facebook_link=facebook_link, website=website, image_link=image_link)
+      if not form.website.data == "":
+        artist.website = form.website.data
+      if not form.image_link.data == "":
+        artist.image_link = form.image_link.data
 
       db.session.add(artist)
       db.session.commit()
