@@ -248,6 +248,8 @@ def create_venue_submission():
       db.session.close()
   else:
     print(form.errors)
+    error = str(form.errors)
+    flash('An error occurred. Venue ' + form.name.data + ' could not be listed.' + ' Error message: ' + error)
   return render_template('pages/home.html')
 
 @app.route('/venues/<venue_id>', methods=['DELETE'])
@@ -441,6 +443,8 @@ def create_artist_submission():
       db.session.close()
   else:
     print(form.errors)
+    error = str(form.errors)
+    flash('An error occurred. Artist ' + form.name.data + ' could not be listed.'  + ' Error message: ' + error)
 
   return render_template('pages/home.html')
 
@@ -500,6 +504,8 @@ def create_show_submission():
       db.session.close()
   else:
     print(form.errors)
+    error = str(form.errors)
+    flash('An error occurred. Show could not be listed.'  + ' Error message: ' + error)
 
   return render_template('pages/home.html')
 
